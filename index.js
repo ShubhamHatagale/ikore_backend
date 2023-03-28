@@ -1,11 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
 // const token = "cJPzDoVlSY6ZqnNZUz-NhV:APA91bFU6uGeEZHOun_alX9kKb9N7LlI_t_E31GBNXUL4mhW9JCHQZCJ2PvY8AeDumFiYiCpTiUHAwtbkdUu0XOeLQd8aAzsXdyNzil-EeaGw01yjsjE-XZ7sat4Q1aoDmmivGkxH7Ra";
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-app.listen(9000, () => {
-    console.log("Server Running on port 9000");
+var port = process.env.port;
+
+app.listen(port, () => {
+    console.log("Server Running on port 3000");
 });
 
 app.get("/", (req, res) => {
@@ -21,3 +24,13 @@ app.use((req, res, next) => {
     next();
 });
 
+
+app.get("/product", function (request, response) {
+    response.json({ "Message": "Welcome to Node js" });
+});
+
+app.listen(port, function () {
+    var datetime = new Date();
+    var message = "Server runnning on Port:- " + port + "Started at :- " + datetime;
+    console.log(message);
+});  
